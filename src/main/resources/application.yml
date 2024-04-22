@@ -1,0 +1,23 @@
+# SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+# SPDX-License-Identifier: Apache-2.0
+spring:
+  jackson:
+    default-property-inclusion: NON_NULL
+  main:
+    banner-mode: off
+    web-application-type: reactive
+  reactor:
+    context-propagation: auto
+
+arc:
+  scripts:
+    folder: agents
+    hotReload:
+      enable: true
+      delay: PT1S
+
+logging:
+  level:
+    root: WARN
+    io.github.lmos.arc: DEBUG
+    ArcDSL: DEBUG
