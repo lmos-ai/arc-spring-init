@@ -45,4 +45,3 @@ bin/
 
 ### Secrets ###
 **/application-secret.yml
-config/application.yml

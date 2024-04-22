@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+# SPDX-License-Identifier: Apache-2.0
+
+ai:
+  clients:
+    - model-name: gemma:7b
+      url: http://localhost:11434
+      client: ollama
+    - model-name: llava
+      url: http://localhost:11434
+      client: ollama
+    - model-name: llama3:70b
+      url: http://localhost:11434
+      client: ollama
+    - model-name: gpt-35
+      url: MODEL_URL
+      api-key: YOUR_API_KEY
+      client: azure
