@@ -8,7 +8,7 @@ package io.github.lmos.arc.runner
 
 import com.azure.ai.openai.OpenAIAsyncClient
 import com.azure.ai.openai.OpenAIClientBuilder
-import com.azure.core.credential.AzureKeyCredential
+import com.azure.core.credential.KeyCredential
 import io.github.lmos.arc.agents.events.EventPublisher
 import io.github.lmos.arc.agents.llm.ChatCompleter
 import io.github.lmos.arc.agents.llm.ChatCompleterProvider
@@ -28,10 +28,13 @@ import org.springframework.context.annotation.Bean
 @EnableConfigurationProperties(AIConfig::class)
 class DemoApplication {
 
-    fun openAIAsyncClient(languageModel: AzureClientConfig): OpenAIAsyncClient {
+    /**
+     * The Azure OpenAI client setup to connect to the OpenAI API.
+     * See https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/openai/azure-ai-openai#support-for-non-azure-openai
+     */
+    fun openAIAsyncClient(config: AzureClientConfig): OpenAIAsyncClient {
         return OpenAIClientBuilder()
-            .endpoint(languageModel.url)
-            .credential(AzureKeyCredential(languageModel.apiKey))
+            .credential(KeyCredential(config.apiKey))
             .buildAsyncClient()
     }
 

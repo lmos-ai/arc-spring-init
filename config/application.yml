@@ -3,16 +3,16 @@
 
 ai:
   clients:
+    - model-name: gpt-4-turbo-preview
+      url: NOT_REQUIRED_FOR_OPENAI
+      api-key: YOUR_API_KEY
+      client: azure
     - model-name: gemma:7b
       url: http://localhost:11434
       client: ollama
     - model-name: llava
       url: http://localhost:11434
       client: ollama
-    - model-name: llama3:70b
+    - model-name: llama3:8b
       url: http://localhost:11434
       client: ollama
-    - model-name: gpt-35
-      url: MODEL_URL
-      api-key: YOUR_API_KEY
-      client: azure
