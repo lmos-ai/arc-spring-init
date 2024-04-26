@@ -7,6 +7,7 @@
 package io.github.lmos.arc.runner
 
 import io.github.lmos.arc.agents.AgentProvider
+import io.github.lmos.arc.agents.AuthenticationException
 import io.github.lmos.arc.agents.ChatAgent
 import io.github.lmos.arc.agents.User
 import io.github.lmos.arc.agents.conversation.AssistantMessage
@@ -16,9 +17,10 @@ import io.github.lmos.arc.agents.conversation.latest
 import io.github.lmos.arc.agents.getAgentByName
 import io.github.lmos.arc.core.getOrThrow
 import kotlinx.serialization.Serializable
-import org.springframework.http.HttpStatus.NOT_FOUND
+import org.springframework.http.HttpStatus.*
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
+import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -63,6 +65,11 @@ class AgentController(
     @DeleteMapping("/chat")
     suspend fun resetChat() {
         conversation.set(Conversation(user = User("anonymous")))
+    }
+
+    @ExceptionHandler(AuthenticationException::class)
+    fun handleException(ex:AuthenticationException) {
+        throw ResponseStatusException(UNAUTHORIZED, "Validate API-KEY!", ex)
     }
 }
 
