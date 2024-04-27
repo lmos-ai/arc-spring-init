@@ -1,0 +1,10 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: arc-spring-init
+Upstream-Contact: Deutsche Telekom AG <opensource@telekom.de>
+Source: https://github.com/lmos-ai/arc-spring-init
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: $YEAR $NAME <$CONTACT>
+# License: ...

@@ -12,9 +12,8 @@ Add language model configuration and API-KEY to `config/application.yml`.
 ```
 ai:
   clients:
-    - model-name: gpt-35
-      url: [YOUR_AZURE_ENDPOINT]
-      api-key: [YOUR_API_KEY]
+    - model-name: gpt-4-turbo
+      api-key: [YOUR_OPENAI_API_KEY]
       client: azure
 ```
 
@@ -24,7 +23,8 @@ Start the Demo Application like a normal Spring Boot application.
 This requires the port 8080 to be available.
 
 ```bash
-  ./gradlew bootRun
+  ./arc start 
+  # or ./gradlew bootRun
 ```
 
 
@@ -43,12 +43,8 @@ curl -X POST --location "http://localhost:8080/chat/[AGENT_NAME]" \
 Or using the "arc" command line tool.
 
 ```bash
-  ./arc news-agent
-```
-or
-
-```bash
-  ./gradlew --console=plain arc -Pagent="news-agent" 
+  ./arc chat joke-agent
+  # ./gradlew --console=plain arc -Pagent="news-agent" 
 ```
 
 #### 4. Add new Agents
