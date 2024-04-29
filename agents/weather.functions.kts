@@ -10,7 +10,6 @@
 function(
     name = "get_weather",
     description = "Returns real-time weather information for any location",
-    group = "weather",
     params = types(string("location", "a city to obtain the weather for."))
 ) { (location) ->
     val locationSpecified = location != "unknown" && location?.isNotEmpty() == true

@@ -29,7 +29,7 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
-    val arcVersion = "0.19.0"
+    val arcVersion = "0.20.0"
     kotlinScriptDef("io.github.lmos-ai.arc:arc-scripting:$arcVersion")
     implementation("io.github.lmos-ai.arc:arc-scripting:$arcVersion")
     implementation("io.github.lmos-ai.arc:arc-azure-client:$arcVersion")
@@ -57,6 +57,10 @@ repositories {
     maven {
         name = "github"
         url = URI("https://maven.pkg.github.com/lmos-ai/arc")
+        credentials {
+            username = findProperty("GITHUB_USER")?.toString() ?: getenv("GITHUB_USER")
+            password = findProperty("GITHUB_TOKEN")?.toString() ?: getenv("GITHUB_TOKEN")
+        }
     }
 }
 

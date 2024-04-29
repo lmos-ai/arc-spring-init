@@ -20,5 +20,5 @@ agent {
        - Use multiple function calls if more locations are specified.
      """
     }
-    tools = listOf("weather")
+    tools = listOf("get_weather")
 }

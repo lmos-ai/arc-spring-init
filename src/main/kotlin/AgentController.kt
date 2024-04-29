@@ -6,6 +6,7 @@
 
 package io.github.lmos.arc.runner
 
+import io.github.lmos.arc.agents.AgentFailedException
 import io.github.lmos.arc.agents.AgentProvider
 import io.github.lmos.arc.agents.AuthenticationException
 import io.github.lmos.arc.agents.ChatAgent
@@ -17,7 +18,9 @@ import io.github.lmos.arc.agents.conversation.latest
 import io.github.lmos.arc.agents.getAgentByName
 import io.github.lmos.arc.core.getOrThrow
 import kotlinx.serialization.Serializable
+import org.springframework.http.HttpHeaders
 import org.springframework.http.HttpStatus.*
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -67,9 +70,13 @@ class AgentController(
         conversation.set(Conversation(user = User("anonymous")))
     }
 
-    @ExceptionHandler(AuthenticationException::class)
-    fun handleException(ex:AuthenticationException) {
-        throw ResponseStatusException(UNAUTHORIZED, "Validate API-KEY!", ex)
+    @ExceptionHandler(Exception::class)
+    fun handleException(ex: Exception): ResponseEntity<String> {
+        return when (ex) {
+            is AuthenticationException -> ResponseEntity("Validate API-KEY!", HttpHeaders(), UNAUTHORIZED)
+            is AgentFailedException -> ResponseEntity(ex.cause?.message, HttpHeaders(), BAD_REQUEST)
+            else -> ResponseEntity(ex.message, INTERNAL_SERVER_ERROR)
+        }
     }
 }
 

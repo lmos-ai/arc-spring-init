@@ -14,5 +14,5 @@ agent {
        Use the "get_web_data" function to get the real-time data from the internet.
      """
     }
-    tools = listOf("web")
+    tools = listOf("get_web_data")
 }
