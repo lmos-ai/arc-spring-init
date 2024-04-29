@@ -3,8 +3,6 @@ Upstream-Name: arc-spring-init
 Upstream-Contact: Deutsche Telekom AG <opensource@telekom.de>
 Source: https://github.com/lmos-ai/arc-spring-init
 
-# Sample paragraph, commented out:
-#
-# Files: src/*
-# Copyright: $YEAR $NAME <$CONTACT>
-# License: ...
+Files: gradle/* gradlew gradle.properties
+Copyright: Copyright 2015 the original author or authors.
+License: Apache-2.0

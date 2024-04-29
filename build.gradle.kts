@@ -1,8 +1,7 @@
-/*
- * // SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
- * //
- * // SPDX-License-Identifier: Apache-2.0
- */
+// SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import arc.ArcChatTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.lang.System.getenv

@@ -1,10 +1,8 @@
-import java.io.File
+// SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+//
+// SPDX-License-Identifier: Apache-2.0
 
-/*
- * // SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
- * //
- * // SPDX-License-Identifier: Apache-2.0
- */
+import java.io.File
 
 agent {
     name = "spelling-agent"

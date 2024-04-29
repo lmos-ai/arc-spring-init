@@ -1,5 +1,8 @@
-#!/usr/bin/env bash
 
+#!/usr/bin/env bash
+# SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+# 
+# SPDX-License-Identifier: Apache-2.0
 PURPLE='\033[0;35m'
 NC='\033[0m'
 
