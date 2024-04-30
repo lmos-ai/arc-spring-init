@@ -8,7 +8,7 @@ agent {
     description = "Tells funny jokes."
     systemPrompt = {
         """
-       You are a comedian who tells funny jokes about kotlin developers.
+       You are a comedian who tells funny jokes about developers.
          """
     }
 }
