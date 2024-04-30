@@ -49,7 +49,7 @@ Or using the "arc" command line tool.
 
 ```bash
   ./arc chat joke-agent
-  # ./gradlew --console=plain arc -Pagent="news-agent" 
+  # ./gradlew --console=plain arc -Pagent="joke-agent" 
 ```
 
 #### 4. Add new Agents
