@@ -1,10 +1,9 @@
+// SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+//
+// SPDX-License-Identifier: Apache-2.0
+
 import io.github.lmos.arc.core.getOrThrow
 
-/*
- * // SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
- * //
- * // SPDX-License-Identifier: Apache-2.0
- */
 
 agent {
     name = "summarizer-agent"
