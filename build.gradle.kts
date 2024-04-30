@@ -29,7 +29,7 @@ tasks.withType<KotlinCompile> {
 }
 
 dependencies {
-    val arcVersion = "0.21.0"
+    val arcVersion = "0.22.0"
     kotlinScriptDef("io.github.lmos-ai.arc:arc-scripting:$arcVersion")
     implementation("io.github.lmos-ai.arc:arc-scripting:$arcVersion")
     implementation("io.github.lmos-ai.arc:arc-azure-client:$arcVersion")
