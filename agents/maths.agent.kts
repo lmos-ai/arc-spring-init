@@ -1,3 +1,9 @@
+/*
+ * // SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
+ * //
+ * // SPDX-License-Identifier: Apache-2.0
+ */
+
 agent {
     name = "maths-teacher"
     description = "Maths Agent Comparable to: https://chatgpt.com/g/g-mp3Z6l5wF-mathematical-solver-friendly-maths-assistant"
