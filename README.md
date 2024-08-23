@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2023 Deutsche Telekom AG
 
 SPDX-License-Identifier: CC0-1.0    
 -->
-# Welcome to the Arc Agent Demo Project
+# Welcome to the Arc Agent Init Project
 
 The following project is a demo project for the Arc Agent Framework. 
 It can also be used to kickstart a new Spring Boot project that uses the Arc Agent Framework.
