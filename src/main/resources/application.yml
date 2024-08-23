@@ -8,6 +8,12 @@ spring:
     web-application-type: reactive
   reactor:
     context-propagation: auto
+  graphql:
+    graphiql:
+      enabled: true
+
+server:
+  port: 8080
 
 arc:
   scripts:
@@ -21,3 +27,22 @@ logging:
     root: WARN
     io.github.lmos.arc: DEBUG
     ArcDSL: DEBUG
+
+management:
+  server:
+    port: 9090
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: prometheus,metrics,info,health
+  endpoint:
+    metrics:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  prometheus:
+    metrics:
+      export:
+        enabled: true

@@ -28,35 +28,51 @@ Start the Demo Application like a normal Spring Boot application.
 This requires the port 8080 to be available.
 
 ```bash
-  ./arc start 
-  # or ./gradlew bootRun
+  ./gradlew bootRun
 ```
 
 
-#### 3. Chat with the Application
+#### 3. Access the Agent
 
-Chatting with the application can be done by sending a POST request to the `/chat` endpoint.
+Arc Agents can be accessed via a Graphiql interface.
+Open http://localhost:8080/graphiql?path=/graphql
 
+Example Request:
+
+```graphql
+subscription {
+    agent(
+        agentName: "assistant-agent"
+        request: {
+            conversationContext: {
+                conversationId: "1"
+            }
+            systemContext: [],
+            userContext: {
+                userId: "1234",
+                profile: []
+            },
+            messages: [
+                {
+                    role: "user",
+                    content: "Hi",
+                    format: "text",
+                }
+            ]
+        }
+    ) {
+        messages {
+            content
+        }
+    }
+}
 ```
-curl -X POST --location "http://localhost:8080/chat/[AGENT_NAME]" \
--H "Content-Type: application/json" \
--d '{
-"message" : "Ask question here"
-}'
-```
 
-Or using the "arc" command line tool.
-
-```bash
-  ./arc chat joke-agent
-  # ./gradlew --console=plain arc -Pagent="joke-agent" 
-```
 
 #### 4. Add new Agents
 
 New agents can be added to the `agents` folder located at the root of the project.
-The folder contains some default agents that can be used as a template.
-
+The folder contains a default agent `assistant-agent` that can be used as a template.
 
 
 ## Code of Conduct

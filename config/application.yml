@@ -4,7 +4,7 @@
 
 ai:
   clients:
-    - model-name: gpt-4-turbo-preview
+    - model-name: GPT-4o
       url: NOT_REQUIRED_FOR_OPENAI
       api-key: YOUR_API_KEY
       client: azure
