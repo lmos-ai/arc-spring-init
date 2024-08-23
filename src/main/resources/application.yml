@@ -26,6 +26,7 @@ logging:
   level:
     root: WARN
     io.github.lmos.arc: DEBUG
+    io.github.lmos.arc.runner: WARN
     ArcDSL: DEBUG
 
 management:

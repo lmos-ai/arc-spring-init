@@ -53,7 +53,10 @@ subscription {
             systemContext: [],
             userContext: {
                 userId: "1234",
-                profile: []
+                profile: [{
+                    key: "name",
+                    value: "Pat"
+                }]
             },
             messages: [
                 {
