@@ -17,10 +17,13 @@ Add language model configuration and API-KEY to `config/application.yml`.
 ```
 ai:
   clients:
-    - model-name: gpt-4-turbo
+    - model-name: GPT-4o
       api-key: [YOUR_OPENAI_API_KEY]
       client: azure
 ```
+
+**Hint**: If you want to use a different language model, 
+the example agent under agents/assistant-agent.kts must be adjusted accordingly.
 
 #### 2. Start the Application
 
