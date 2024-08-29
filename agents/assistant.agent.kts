@@ -6,7 +6,7 @@ import io.github.lmos.arc.api.AgentRequest
 
 agent {
     name = "assistant-agent"
-    model = { "llama3:8b" }
+    model = { "GPT-4o" }
     description = "A helpful assistant that can provide information and answer questions."
     systemPrompt = {
         val userProfile = get<AgentRequest>().userContext.profile
