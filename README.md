@@ -12,7 +12,7 @@ It can also be used to kickstart a new Spring Boot project that uses the Arc Age
 
 #### 1. Add language model configuration
 
-Add language model OpenAI API-KEY to `config/application.yml` or as the environment variable, `OPENAI_API_KEY`.
+Add an OpenAI API-KEY to `config/application.yml` or as the environment variable, `OPENAI_API_KEY`.
 
 ```
 arc:
@@ -27,8 +27,15 @@ arc:
         client: ollama
 ```
 
-**Hint**: If you want to use a different language model, 
-the example agent under agents/assistant-agent.kts must be adjusted accordingly.
+Alternatively, you can run an LLM locally with the `ollama` client, see https://ollama.com/,
+and change the model in the agent `assistant.agent.kts` file accordingly.
+
+```kts
+agent {
+    name = "assistant-agent"
+    model = { "llama3:8b" }
+
+```
 
 #### 2. Start the Application
 
