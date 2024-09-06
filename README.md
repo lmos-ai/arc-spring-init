@@ -12,14 +12,19 @@ It can also be used to kickstart a new Spring Boot project that uses the Arc Age
 
 #### 1. Add language model configuration
 
-Add language model configuration and API-KEY to `config/application.yml`.
+Add language model OpenAI API-KEY to `config/application.yml` or as the environment variable, `OPENAI_API_KEY`.
 
 ```
-ai:
-  clients:
-    - model-name: GPT-4o
-      api-key: [YOUR_OPENAI_API_KEY]
-      client: azure
+arc:
+  ai:
+    clients:
+      - id: GPT-4o
+        model-name: GPT-4o
+        api-key: ${OPENAI_API_KEY}
+        client: openai
+      - id: llama3:8b
+        modelName: llama3:8b
+        client: ollama
 ```
 
 **Hint**: If you want to use a different language model, 
@@ -37,8 +42,10 @@ This requires the port 8080 to be available.
 
 #### 3. Access the Agent
 
-Arc Agents can be accessed via a Graphiql interface.
-Open http://localhost:8080/graphiql?path=/graphql
+You can chat with the Arc Agents using the [Arc View](https://github.com/lmos-ai/arc-view).
+Simply open http://localhost:8080/chat/index.html in your browser.
+
+Alternatively, the Graphiql interface is also available, under http://localhost:8080/graphiql?path=/graphql.
 
 Example Request:
 
