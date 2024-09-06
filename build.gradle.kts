@@ -12,15 +12,13 @@ plugins {
 }
 
 version = "1.0.0"
-group = "io.github.lmos-ai.arc.init"
-
+group = "ai.ancf.lmos.app"
 
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
 }
-
 
 kotlin {
     compilerOptions {
@@ -29,26 +27,18 @@ kotlin {
 }
 
 dependencies {
-    val arcVersion = "0.70.0"
-    val kotlinXVersion = "1.8.0"
-    val kotlinSerialization = "1.7.1"
+    val arcVersion = "0.73.0"
 
-    kotlinScriptDef("io.github.lmos-ai.arc:arc-scripting:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-scripting:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-azure-client:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-ollama-client:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-gemini-client:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-spring-boot-starter:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-reader-pdf:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-reader-html:$arcVersion")
-    implementation("io.github.lmos-ai.arc:arc-graphql-spring-boot-starter:$arcVersion")
-    implementation("com.expediagroup:graphql-kotlin-spring-server:7.1.4")
-    implementation("com.graphql-java:graphql-java:21.5")
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:$kotlinXVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:$kotlinXVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:$kotlinXVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinSerialization")
+    implementation("ai.ancf.lmos:arc-scripting:$arcVersion")
+    implementation("ai.ancf.lmos:arc-azure-client:$arcVersion")
+    implementation("com.azure:azure-identity:1.13.1")
+    implementation("ai.ancf.lmos:arc-ollama-client:$arcVersion")
+    implementation("ai.ancf.lmos:arc-gemini-client:$arcVersion")
+    implementation("ai.ancf.lmos:arc-spring-boot-starter:$arcVersion")
+    implementation("ai.ancf.lmos:arc-reader-pdf:$arcVersion")
+    implementation("ai.ancf.lmos:arc-reader-html:$arcVersion")
+    implementation("ai.ancf.lmos:arc-graphql-spring-boot-starter:$arcVersion")
+    implementation("com.graphql-java:graphql-java:21.5") // Workaround for java.lang.NoSuchMethodError
 
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-actuator")

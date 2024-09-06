@@ -21,12 +21,15 @@ arc:
     hotReload:
       enable: true
       delay: PT1S
+  chat:
+    ui:
+      enabled: true
 
 logging:
   level:
     root: WARN
-    io.github.lmos.arc: DEBUG
-    io.github.lmos.arc.runner: WARN
+    ai.ancf.lmos.arc: DEBUG
+    ai.ancf.lmos.arc.app: WARN
     ArcDSL: DEBUG
 
 management:
