@@ -1,4 +1,4 @@
-import io.github.lmos.arc.api.AgentRequest
+import ai.ancf.lmos.arc.api.AgentRequest
 
 // SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
 //
