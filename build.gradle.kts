@@ -19,11 +19,38 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+    withJavadocJar()
+    withSourcesJar()
 }
 
 kotlin {
     compilerOptions {
         freeCompilerArgs.addAll("-Xjsr305=strict", "-Xcontext-receivers")
+    }
+}
+
+jreleaser {
+    signing {
+        armored = true
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                create("app") {
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    snapshotSupported = true
+                    sign = true
+                    checksums = true
+                    sourceJar = true
+                    javadocJar = true
+                    verifyPom = true
+                    applyMavenCentralRules = true
+                    stagingRepository("target/staging-deploy")
+                    namespace = "ai.ancf"
+                    //deploymentId = 'dd9991b0-18a7-41e7-b1fe-37b8ea936f85'
+                }
+            }
+        }
     }
 }
 
