@@ -32,10 +32,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
       - name: Build with Gradle
         run: ./gradlew build
-      - name: Build with Gradle
+      - name: Release with jReleaser
         run: ./gradlew jreleaserSign
         env:
-          JRELEASER_SIGNING_ACTIVE: true
+          JRELEASER_SIGNING_ACTIVE: ALWAYS
           JRELEASER_PROJECT_VERSION: 0.0.1-SNAPSHOT
           JRELEASER_MAVENCENTRAL_USERNAME: ${{ secrets.SONATYPE_USERNAME }}
           JRELEASER_MAVENCENTRAL_PASSWORD: ${{ secrets.SONATYPE_PASSWORD }}
