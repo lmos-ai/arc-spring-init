@@ -31,9 +31,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Build with Gradle
-        run: ./gradlew build
-      - name: Release with jReleaser
-        run: ./gradlew jreleaserSign
+        run: ./gradlew build jreleaserSign
         env:
           JRELEASER_SIGNING_ACTIVE: ALWAYS
           JRELEASER_PROJECT_VERSION: 0.0.1-SNAPSHOT
