@@ -6,7 +6,7 @@ arc:
   ai:
     clients:
       - id: GPT-4o
-        model-name: GPT-4o
+        model-name: gpt-4o
         api-key: ${OPENAI_API_KEY}
         client: openai
       - id: llama3:8b

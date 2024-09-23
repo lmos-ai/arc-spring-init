@@ -27,7 +27,7 @@ kotlin {
 }
 
 dependencies {
-    val arcVersion = "0.73.0"
+    val arcVersion = "0.81.0"
 
     implementation("ai.ancf.lmos:arc-scripting:$arcVersion")
     implementation("ai.ancf.lmos:arc-azure-client:$arcVersion")
