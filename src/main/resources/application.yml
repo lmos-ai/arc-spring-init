@@ -24,6 +24,9 @@ arc:
   chat:
     ui:
       enabled: true
+  subscriptions:
+    events:
+      enable: true
 
 logging:
   level:
