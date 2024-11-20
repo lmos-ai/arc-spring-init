@@ -1,0 +1,1 @@
+data class Bills(val productName: String, val amount: Double)

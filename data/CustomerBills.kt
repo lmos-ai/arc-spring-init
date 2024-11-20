@@ -1,0 +1,1 @@
+data class CustomerBills(val bills: List<Bills>)
