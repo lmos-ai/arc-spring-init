@@ -9,6 +9,7 @@ plugins {
     id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.graalvm.buildtools.native") version "0.10.2"
+    // id("ai.ancf.lmos.arc.gradle.plugin") version "0.110.0"
 }
 
 version = "1.0.0"
@@ -27,21 +28,29 @@ kotlin {
 }
 
 dependencies {
-    val arcVersion = "0.88.0"
+    val arcVersion = "0.111.0"
+    val langchain4jVersion = "0.36.2"
 
-    implementation("ai.ancf.lmos:arc-scripting:$arcVersion")
+    // Arc
     implementation("ai.ancf.lmos:arc-azure-client:$arcVersion")
-    implementation("com.azure:azure-identity:1.13.1")
-    implementation("ai.ancf.lmos:arc-ollama-client:$arcVersion")
-    implementation("ai.ancf.lmos:arc-gemini-client:$arcVersion")
     implementation("ai.ancf.lmos:arc-spring-boot-starter:$arcVersion")
     implementation("ai.ancf.lmos:arc-reader-pdf:$arcVersion")
     implementation("ai.ancf.lmos:arc-reader-html:$arcVersion")
+    implementation("ai.ancf.lmos:arc-assistants:$arcVersion")
+    implementation("ai.ancf.lmos:arc-reader-html:$arcVersion")
+    implementation("ai.ancf.lmos:arc-api:$arcVersion")
     implementation("ai.ancf.lmos:arc-graphql-spring-boot-starter:$arcVersion")
-    implementation("com.graphql-java:graphql-java:21.5") // Workaround for java.lang.NoSuchMethodError
+
+    // Azure
+    implementation("com.azure:azure-identity:1.13.1")
 
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // Bedrock
+    implementation("dev.langchain4j:langchain4j-bedrock:$langchain4jVersion")
+    implementation("dev.langchain4j:langchain4j-google-ai-gemini:$langchain4jVersion")
+    implementation("dev.langchain4j:langchain4j-ollama:$langchain4jVersion")
 
     // Metrics
     implementation("io.micrometer:micrometer-registry-prometheus")

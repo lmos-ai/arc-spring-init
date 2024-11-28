@@ -17,6 +17,7 @@ server:
 
 arc:
   scripts:
+    enabled: true
     folder: agents
     hotReload:
       enable: true
