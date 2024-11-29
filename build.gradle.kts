@@ -51,6 +51,7 @@ dependencies {
     implementation("dev.langchain4j:langchain4j-bedrock:$langchain4jVersion")
     implementation("dev.langchain4j:langchain4j-google-ai-gemini:$langchain4jVersion")
     implementation("dev.langchain4j:langchain4j-ollama:$langchain4jVersion")
+    implementation("dev.langchain4j:langchain4j-open-ai:$langchain4jVersion")
 
     // Metrics
     implementation("io.micrometer:micrometer-registry-prometheus")
