@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 plugins {
-    kotlin("jvm") version "2.0.20"
+    kotlin("jvm") version "2.1.0"
     kotlin("plugin.serialization") version "2.0.20"
     kotlin("plugin.spring") version "2.0.20"
     id("org.springframework.boot") version "3.3.3"
@@ -28,7 +28,7 @@ kotlin {
 }
 
 dependencies {
-    val arcVersion = "0.111.0"
+    val arcVersion = "0.116.0"
     val langchain4jVersion = "0.36.2"
 
     // Arc
@@ -47,7 +47,7 @@ dependencies {
     // Spring Boot
     implementation("org.springframework.boot:spring-boot-starter-actuator")
 
-    // Bedrock
+    // Langchain4j
     implementation("dev.langchain4j:langchain4j-bedrock:$langchain4jVersion")
     implementation("dev.langchain4j:langchain4j-google-ai-gemini:$langchain4jVersion")
     implementation("dev.langchain4j:langchain4j-ollama:$langchain4jVersion")
