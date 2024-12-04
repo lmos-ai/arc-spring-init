@@ -6,6 +6,7 @@ agent {
     name = "assistant-agent"
     description = "A helpful assistant that can provide information and answer questions."
     model { "GPT-4o" }
+    tools = AllTools
     prompt {
         val customerName = userProfile("name", "")
 
