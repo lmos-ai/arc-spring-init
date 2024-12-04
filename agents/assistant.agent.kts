@@ -25,10 +25,8 @@ agent {
         - If the customer's question is on a topic not described in the "Knowledge" section nor llm functions, reply that you cannot help with that issue.
        
        ### Knowledge
-        {
-         "description": "Customer would like to buy a new phone.",
-         "solution": "Instruct the Customer that they can use the link [New Phone](https://new-phones.com).",
-        }
+         **Customer would like to know about Arc.**
+         - Read the content from https://lmos-ai.github.io/arc/ and provide the answer.
        
       """
     }
