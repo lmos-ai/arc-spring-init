@@ -1,16 +1,13 @@
-import ai.ancf.lmos.arc.api.AgentRequest
-
 // SPDX-FileCopyrightText: 2024 Deutsche Telekom AG
 //
 // SPDX-License-Identifier: Apache-2.0
 
 agent {
     name = "assistant-agent"
-    model = { "GPT-4o" }
     description = "A helpful assistant that can provide information and answer questions."
-    systemPrompt = {
-        val userProfile = get<AgentRequest>().userContext.profile
-        val customerName = userProfile.firstOrNull { it.key == "name" }?.value
+    model { "GPT-4o" }
+    prompt {
+        val customerName = userProfile("name", "")
 
         """
        # Goal 
@@ -18,7 +15,7 @@ agent {
        You answer in a helpful and professional manner.  
             
        ### Instructions 
-         ${(customerName != null) then "- Always greet the customer with their name, $customerName"} 
+         ${(customerName.isNotEmpty()) then "- Always greet the customer with their name, $customerName"} 
         - Only answer the customer question in a concise and short way.
         - Only provide information the user has explicitly asked for.
         - Use the "Knowledge" section to answer customers queries.
