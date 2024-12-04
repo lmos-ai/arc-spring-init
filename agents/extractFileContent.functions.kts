@@ -2,23 +2,23 @@
 //
 // SPDX-License-Identifier: Apache-2.0
 import java.io.File
+
 function(
-    name = "readKtFileContent",
+    name = "extractFileContent",
     isSensitive = true,
-    description = "Read the file content",
-    params = types(string("filepath","File location"))
+    description = "Retrieve and return the content of a specified file.",
+    params = types(string("filepath", "File Location")),
 ){(filepath)->
+    //Extract the file content based on file location to path
     val file = File(filepath)
-    println("filePath = ${file.absolutePath}")
     var content : String = ""
     // Check if the file exists
     if (file.exists()) {
         content =  file.readText() // Reads the entire content of the file
     } else {
-        content =  "File not found"
+        content =  "No Information Available"
     }
     """
-       "This is file content ": ${content}
-       
+       "File Content ": $content
     """.trimIndent()
 }
