@@ -20,24 +20,28 @@ function(
     val propertiesPath = Paths.get("settings.gradle.kts").toAbsolutePath().toString()
     // README-PATH
     val readMePath = Paths.get("README.md").toAbsolutePath().toString()
+    // Application Level Configuration
+    val applicationConfigPath = Paths.get("src/main/resources").toAbsolutePath().toString()
 
-    // Get all .kt and .kts file names for domains and functions
+    // Get all extensions based file names for domains, config, functions and application level
     val domainFileNames = listKtOrKtsFiles(domainPath)
     val functionFileNames = listKtOrKtsFiles(functionPath)
     val buildFileNames = listKtOrKtsFiles(buildPath, extensions = listOf("gradle.kts"))
     val propertiesFileNames = listKtOrKtsFiles(propertiesPath, extensions = listOf("gradle.kts"))
     val readmeFileNames = listKtOrKtsFiles(readMePath, extensions = listOf("md"))
+    val applicationConfigFileNames = listKtOrKtsFiles(applicationConfigPath, extensions = listOf("yml"))
     """
         "Domain Files":${domainFileNames}
         "Template Files ":${functionFileNames}
         "Service Build Info ":${buildFileNames}
         "Service Properties Info":${propertiesFileNames}
         "Service Readme Info":${readmeFileNames}
+        "Application Config Files":${applicationConfigFileNames}
     """.trimIndent()
 }
 
 
-// Function to list all .kt or .kts file names from the given directory
+// Function to get all extensions based files name from the given directory
 fun listKtOrKtsFiles(directoryPath: String, extensions: List<String> = listOf("kt", "kts")): String {
     val file = File(directoryPath)
     // Check if the path is a file
