@@ -9,7 +9,6 @@ plugins {
     id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.graalvm.buildtools.native") version "0.10.2"
-    // id("ai.ancf.lmos.arc.gradle.plugin") version "0.110.0"
 }
 
 version = "1.0.0"
