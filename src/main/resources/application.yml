@@ -32,8 +32,8 @@ arc:
 logging:
   level:
     root: WARN
-    ai.ancf.lmos.arc: DEBUG
-    ai.ancf.lmos.arc.app: WARN
+    org.eclipse.lmos.arc: DEBUG
+    org.eclipse.lmos.arc.app: WARN
     ArcDSL: DEBUG
 
 management:

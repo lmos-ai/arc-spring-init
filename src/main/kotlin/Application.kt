@@ -3,7 +3,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 
-package ai.ancf.lmos.arc.app
+package org.eclipse.lmos.arc.app
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

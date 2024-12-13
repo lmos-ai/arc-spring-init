@@ -12,7 +12,7 @@ plugins {
 }
 
 version = "1.0.0"
-group = "ai.ancf.lmos.app"
+group = "org.eclipse.lmos.app"
 
 java {
     toolchain {
@@ -27,18 +27,18 @@ kotlin {
 }
 
 dependencies {
-    val arcVersion = "0.116.0"
+    val arcVersion = "0.1.0-SNAPSHOT"
     val langchain4jVersion = "0.36.2"
 
     // Arc
-    implementation("ai.ancf.lmos:arc-azure-client:$arcVersion")
-    implementation("ai.ancf.lmos:arc-spring-boot-starter:$arcVersion")
-    implementation("ai.ancf.lmos:arc-reader-pdf:$arcVersion")
-    implementation("ai.ancf.lmos:arc-reader-html:$arcVersion")
-    implementation("ai.ancf.lmos:arc-assistants:$arcVersion")
-    implementation("ai.ancf.lmos:arc-reader-html:$arcVersion")
-    implementation("ai.ancf.lmos:arc-api:$arcVersion")
-    implementation("ai.ancf.lmos:arc-graphql-spring-boot-starter:$arcVersion")
+    implementation("org.eclipse.lmos:arc-azure-client:$arcVersion")
+    implementation("org.eclipse.lmos:arc-spring-boot-starter:$arcVersion")
+    implementation("org.eclipse.lmos:arc-reader-pdf:$arcVersion")
+    implementation("org.eclipse.lmos:arc-reader-html:$arcVersion")
+    implementation("org.eclipse.lmos:arc-assistants:$arcVersion")
+    implementation("org.eclipse.lmos:arc-reader-html:$arcVersion")
+    implementation("org.eclipse.lmos:arc-api:$arcVersion")
+    implementation("org.eclipse.lmos:arc-graphql-spring-boot-starter:$arcVersion")
 
     // Azure
     implementation("com.azure:azure-identity:1.13.1")

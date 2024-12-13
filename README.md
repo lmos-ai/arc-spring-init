@@ -49,7 +49,7 @@ This requires the port 8080 to be available.
 
 #### 3. Access the Agent
 
-You can chat with the Arc Agents using the [Arc View](https://github.com/lmos-ai/arc-view).
+You can chat with the Arc Agents using the [Arc View](https://github.com/eclipse-lmos/arc-view).
 Simply open http://localhost:8080/chat/index.html in your browser.
 
 Alternatively, the Graphiql interface is also available, under http://localhost:8080/graphiql?path=/graphql.
