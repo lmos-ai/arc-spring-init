@@ -1,1 +1,0 @@
-data class Contracts(val contractName: String)
