@@ -9,35 +9,59 @@ function(
     isSensitive = true,
     description = "A compilation of file paths containing essential details and resources related to the service or project",
 ) {
-    //Collect Source information for given below
+    /**
+     * Collect Source information for given below and make it configurable the functions, domain, projectPath ..etc
+     * Note: Read the environment variables
+     */
+    val functionScriptBasePath = System.getenv("FUNCTIONS_BASE_PATH") ?: "agents"
+    val domainEntitiesBasePath = System.getenv("DOMAIN_ENTITIES_BASE_PATH") ?: ""
+    val projectDirectoryPath = System.getenv("PROJECT_DIR") ?: ""
+    val jarDependencyBasePath = System.getenv("JAR_DEPENDENCY_BASE_PATH") ?: "build"
+    val allowedApplicationLevelConfig = System.getenv("ALLOWED_READ_RESOURCES") ?: "false"
 
-    //Function DSL or Template
-    val functionPath = Paths.get("templates").toAbsolutePath().toString()
-    //Domain Entities
-    val domainPath = Paths.get("data").toAbsolutePath().toString()
-    //Build and Properties
-    val buildPath = Paths.get("build.gradle.kts").toAbsolutePath().toString()
-    val propertiesPath = Paths.get("settings.gradle.kts").toAbsolutePath().toString()
-    // README-PATH
-    val readMePath = Paths.get("README.md").toAbsolutePath().toString()
-    // Application Level Configuration
-    val applicationConfigPath = Paths.get("src/main/resources").toAbsolutePath().toString()
-
-    // Get all extensions based file names for domains, config, functions and application level
-    val domainFileNames = listKtOrKtsFiles(domainPath)
-    val functionFileNames = listKtOrKtsFiles(functionPath)
-    val buildFileNames = listKtOrKtsFiles(buildPath, extensions = listOf("gradle.kts"))
-    val propertiesFileNames = listKtOrKtsFiles(propertiesPath, extensions = listOf("gradle.kts"))
-    val readmeFileNames = listKtOrKtsFiles(readMePath, extensions = listOf("md"))
-    val applicationConfigFileNames = listKtOrKtsFiles(applicationConfigPath, extensions = listOf("yml"))
-    """
+    println(
+        "ENV Variables\n" +
+                "FUN_BASE_PATH =  $functionScriptBasePath\n" +
+                "DOMAIN_BASE_PATH =  $domainEntitiesBasePath\n" +
+                "PROJECT_DIR_PATH =  $projectDirectoryPath\n" +
+                "JAR_DEPENDENCY_BASE_PATH =  $jarDependencyBasePath\n" +
+                "ALLOWED_READ_RESOURCES = $allowedApplicationLevelConfig"
+    )
+    try {
+        //Function DSL or Template
+        val functionPath = Paths.get(functionScriptBasePath).toAbsolutePath().toString()
+        //Domain Entities
+        val domainPath = Paths.get(domainEntitiesBasePath).toAbsolutePath().toString()
+        //Build and Properties
+        val buildPath = Paths.get("build.gradle.kts").toAbsolutePath().toString()
+        val propertiesPath = Paths.get("settings.gradle.kts").toAbsolutePath().toString()
+        // README-PATH
+        val readMePath = Paths.get("README.md").toAbsolutePath().toString()
+        // Application Level Configuration
+        var applicationConfigPath = ""
+        if (allowedApplicationLevelConfig.toBoolean()) {
+            applicationConfigPath = Paths.get("src/main/resources").toAbsolutePath().toString()
+        }
+        // Get all extensions based file names for domains, config, functions and application level
+        val domainFileNames = listKtOrKtsFiles(domainPath)
+        val functionFileNames = listKtOrKtsFiles(functionPath, extensions = listOf("functions.kts"))
+        val buildFileNames = listKtOrKtsFiles(buildPath, extensions = listOf("gradle.kts"))
+        val propertiesFileNames = listKtOrKtsFiles(propertiesPath, extensions = listOf("gradle.kts"))
+        val readmeFileNames = listKtOrKtsFiles(readMePath, extensions = listOf("md"))
+        val applicationConfigFileNames = listKtOrKtsFiles(applicationConfigPath, extensions = listOf("yml"))
+        """
         "Domain Files":${domainFileNames}
         "Template Files ":${functionFileNames}
         "Service Build Info ":${buildFileNames}
         "Service Properties Info":${propertiesFileNames}
         "Service Readme Info":${readmeFileNames}
         "Application Config Files":${applicationConfigFileNames}
+        "Project Directory:${projectDirectoryPath}
+        "JAR Dependency":${jarDependencyBasePath}
     """.trimIndent()
+    } catch (ex: Exception) {
+        """Issue during source collection with exception ${ex.message}""".trimIndent()
+    }
 }
 
 
@@ -60,7 +84,7 @@ fun listKtOrKtsFiles(directoryPath: String, extensions: List<String> = listOf("k
 
     // Process directory for matching files
     return file.walk()
-        .filter { it.isFile && (matchesExtension(it.name,extensions)) }
+        .filter { it.isFile && (matchesExtension(it.name, extensions)) }
         .map { "${it.name} -> ${it.absolutePath}" }
         .joinToString(", ")
 }

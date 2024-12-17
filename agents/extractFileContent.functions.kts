@@ -8,15 +8,15 @@ function(
     isSensitive = true,
     description = "Retrieve and return the content of a specified file.",
     params = types(string("filepath", "File Location")),
-){(filepath)->
+) { (filepath) ->
     //Extract the file content based on file location to path
     val file = File(filepath)
-    var content : String = ""
+    var content: String = ""
     // Check if the file exists
     if (file.exists()) {
-        content =  file.readText() // Reads the entire content of the file
+        content = file.readText() // Reads the entire content of the file
     } else {
-        content =  "No Information Available"
+        content = "No Information Available"
     }
     """
        "File Content ": $content
