@@ -10,11 +10,10 @@ function(
     description = "A compilation of file paths containing essential details and resources related to the service or project",
 ) {
     /**
-     * Collect Source information for given below and make it configurable the functions, domain, projectPath ..etc
+     * Collect Source information for given below and make it configurable the functions, source_code, projectPath ..etc
      * Note: Read the environment variables
      */
     val functionScriptBasePath = System.getenv("FUNCTIONS_BASE_PATH") ?: "agents"
-    val domainEntitiesBasePath = System.getenv("DOMAIN_ENTITIES_BASE_PATH") ?: ""
     val projectDirectoryPath = System.getenv("PROJECT_DIR") ?: ""
     val jarDependencyName = System.getenv("JAR_DEPENDENCY_NAME") ?: "build"
     val allowedApplicationLevelConfig = System.getenv("ALLOWED_READ_RESOURCES") ?: "false"
@@ -23,7 +22,6 @@ function(
     println(
         "ENV Variables\n" +
                 "FUN_BASE_PATH =  $functionScriptBasePath\n" +
-                "DOMAIN_BASE_PATH =  $domainEntitiesBasePath\n" +
                 "PROJECT_DIR_PATH =  $projectDirectoryPath\n" +
                 "JAR_DEPENDENCY_NAME =  $jarDependencyName\n" +
                 "ALLOWED_READ_RESOURCES = $allowedApplicationLevelConfig\n" +
@@ -32,8 +30,8 @@ function(
     try {
         //Function DSL or Template
         val functionPath = Paths.get(functionScriptBasePath).toAbsolutePath().toString()
-        //Domain Entities
-        val domainPath = Paths.get(domainEntitiesBasePath).toAbsolutePath().toString()
+        //source code Base Path
+        val sourceCodeBasePath = Paths.get("src/main/kotlin").toAbsolutePath().toString()
         //Build and Properties
         val buildPath = Paths.get("build.gradle.kts").toAbsolutePath().toString()
         val propertiesPath = Paths.get("settings.gradle.kts").toAbsolutePath().toString()
@@ -45,8 +43,9 @@ function(
         //Application Level External configuration
         val applicationExternalConfigPath = Paths.get(externalConfigFileName).toAbsolutePath().toString()
 
-        // Get all extensions based file names for domains, config, functions and application level
-        val domainFileNames = if (domainPath.isNotEmpty()) listKtOrKtsFiles(domainPath) else emptyList<String>()
+        // Get all extensions based file names for source code, config, functions and application level
+        val sourceCodeFileNames = listKtOrKtsFiles(sourceCodeBasePath, extensions = listOf("kt"))
+        println("###Source Code file Count = ${sourceCodeFileNames.count()}")
         val functionFileNames = listKtOrKtsFiles(functionPath, extensions = listOf("functions.kts"))
         val buildFileNames = listKtOrKtsFiles(buildPath, extensions = listOf("gradle.kts"))
         val propertiesFileNames = listKtOrKtsFiles(propertiesPath, extensions = listOf("gradle.kts"))
@@ -61,7 +60,7 @@ function(
             extensions = listOf("yml")
         ) else emptyList<String>()
         """
-        "Domain Files":${domainFileNames}
+        "Source Code Files":${sourceCodeFileNames}
         "Template Files ":${functionFileNames}
         "Service Build Info ":${buildFileNames}
         "Service Properties Info":${propertiesFileNames}
