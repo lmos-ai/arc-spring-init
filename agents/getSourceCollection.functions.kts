@@ -16,16 +16,18 @@ function(
     val functionScriptBasePath = System.getenv("FUNCTIONS_BASE_PATH") ?: "agents"
     val domainEntitiesBasePath = System.getenv("DOMAIN_ENTITIES_BASE_PATH") ?: ""
     val projectDirectoryPath = System.getenv("PROJECT_DIR") ?: ""
-    val jarDependencyBasePath = System.getenv("JAR_DEPENDENCY_BASE_PATH") ?: "build"
+    val jarDependencyName = System.getenv("JAR_DEPENDENCY_NAME") ?: "build"
     val allowedApplicationLevelConfig = System.getenv("ALLOWED_READ_RESOURCES") ?: "false"
+    val externalConfigFileName = System.getenv("EXTERNAL_CONFIG_FILE_NAME") ?: ""
 
     println(
         "ENV Variables\n" +
                 "FUN_BASE_PATH =  $functionScriptBasePath\n" +
                 "DOMAIN_BASE_PATH =  $domainEntitiesBasePath\n" +
                 "PROJECT_DIR_PATH =  $projectDirectoryPath\n" +
-                "JAR_DEPENDENCY_BASE_PATH =  $jarDependencyBasePath\n" +
-                "ALLOWED_READ_RESOURCES = $allowedApplicationLevelConfig"
+                "JAR_DEPENDENCY_NAME =  $jarDependencyName\n" +
+                "ALLOWED_READ_RESOURCES = $allowedApplicationLevelConfig\n" +
+                "EXTERNAL_CONFIG_FILE_NAME = $externalConfigFileName"
     )
     try {
         //Function DSL or Template
@@ -38,17 +40,26 @@ function(
         // README-PATH
         val readMePath = Paths.get("README.md").toAbsolutePath().toString()
         // Application Level Configuration
-        var applicationConfigPath = ""
-        if (allowedApplicationLevelConfig.toBoolean()) {
-            applicationConfigPath = Paths.get("src/main/resources").toAbsolutePath().toString()
-        }
+        val applicationConfigPath = allowedApplicationLevelConfig.toBoolean()
+            .let { if (it) Paths.get("src/main/resources").toAbsolutePath().toString() else "" }
+        //Application Level External configuration
+        val applicationExternalConfigPath = Paths.get(externalConfigFileName).toAbsolutePath().toString()
+
         // Get all extensions based file names for domains, config, functions and application level
-        val domainFileNames = listKtOrKtsFiles(domainPath)
+        val domainFileNames = if (domainPath.isNotEmpty()) listKtOrKtsFiles(domainPath) else emptyList<String>()
         val functionFileNames = listKtOrKtsFiles(functionPath, extensions = listOf("functions.kts"))
         val buildFileNames = listKtOrKtsFiles(buildPath, extensions = listOf("gradle.kts"))
         val propertiesFileNames = listKtOrKtsFiles(propertiesPath, extensions = listOf("gradle.kts"))
         val readmeFileNames = listKtOrKtsFiles(readMePath, extensions = listOf("md"))
-        val applicationConfigFileNames = listKtOrKtsFiles(applicationConfigPath, extensions = listOf("yml"))
+        val applicationConfigFileNames = if (applicationConfigPath.isNotEmpty()) listKtOrKtsFiles(
+            applicationConfigPath,
+            extensions = listOf("yml")
+        ) else emptyList<String>()
+
+        val applicationExternalFileName = if (applicationExternalConfigPath.isNotEmpty()) listKtOrKtsFiles(
+            applicationExternalConfigPath,
+            extensions = listOf("yml")
+        ) else emptyList<String>()
         """
         "Domain Files":${domainFileNames}
         "Template Files ":${functionFileNames}
@@ -57,7 +68,8 @@ function(
         "Service Readme Info":${readmeFileNames}
         "Application Config Files":${applicationConfigFileNames}
         "Project Directory:${projectDirectoryPath}
-        "JAR Dependency":${jarDependencyBasePath}
+        "JAR Dependency":${jarDependencyName}
+        "External Config Files":${applicationExternalFileName}
     """.trimIndent()
     } catch (ex: Exception) {
         """Issue during source collection with exception ${ex.message}""".trimIndent()

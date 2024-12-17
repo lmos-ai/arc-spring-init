@@ -25,8 +25,9 @@ agent {
         e. Build Directory: Contains .kt* files for micro-service build information
         f. Project Setting Directory: Contains .kt* files for microservice settings.
         g. Application Level Or Microservice Running Configuration: Look for the *.yml files
-        h. Project Directory Path: Contains location of Project or Microservice
-        i. JAR Dependency: Contains Jar dependency name
+        h. External Config Files: Contains *.yml files which has information About Application configuration
+        i. Project Directory Path: Contains location of Project or Microservice
+        j. JAR Dependency: Contains Jar dependency name
 3.  Handling Kotlin Domain Models
         a. Dynamically list available .kt* files for domain models.
         b. Parse and modify domain model classes based on user input, ensuring adherence to the existing code structure.
