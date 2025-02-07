@@ -11,7 +11,6 @@ plugins {
     id("org.graalvm.buildtools.native") version "0.10.2"
 }
 
-version = "1.0.0"
 group = "org.eclipse.lmos.app"
 
 java {
