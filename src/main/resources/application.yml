@@ -31,10 +31,10 @@ arc:
 
 logging:
   level:
-    root: WARN
-    org.eclipse.lmos.arc: DEBUG
-    org.eclipse.lmos.arc.app: WARN
-    ArcDSL: DEBUG
+    root: INFO
+    org.eclipse.lmos.arc: INFO
+    org.eclipse.lmos.arc.app: INFO
+    ArcDSL: INFO
 
 management:
   server:
