@@ -24,7 +24,7 @@ agent {
        
        ### Knowledge
          **Customer would like to know about Arc.**
-         - Read the content from https://eclipse-lmos.github.io/arc/ and provide the answer.
+         - Read the content from https://eclipse.dev/lmos/arc/ and provide the answer.
        
       """
     }
